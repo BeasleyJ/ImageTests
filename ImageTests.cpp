@@ -29,3 +29,13 @@ TEST(Image, setPixel)
     EXPECT_TRUE(g==0);
     EXPECT_TRUE(b==0);
 }
+TEST(Image, setPixelvalue)
+{
+    Image i(100,100);
+    i.setPixel(10,10,255,128,12); // set first pixel to red
+    unsigned char r,g,b;
+    i.getPixel(10,10,r,g,b);
+    EXPECT_TRUE(r==255);
+    EXPECT_TRUE(g==128);
+    EXPECT_TRUE(b==12);
+}
