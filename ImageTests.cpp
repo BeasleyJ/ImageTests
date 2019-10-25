@@ -12,3 +12,11 @@ TEST(Image, defaultCtor)
     EXPECT_EQ(i.channels(),3);
 
 }
+TEST(Image, userCtor)
+{
+    Image i(100,100);
+    EXPECT_EQ(i.width(),100);
+    EXPECT_EQ(i.height(),100);
+    EXPECT_EQ(i.channels(),3);
+    EXPECT_NE(i.pixels(),nullptr);
+}
