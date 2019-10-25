@@ -10,7 +10,6 @@ TEST(Image, defaultCtor)
     EXPECT_EQ(i.width(),0);
     EXPECT_EQ(i.height(),0);
     EXPECT_EQ(i.channels(),3);
-
 }
 TEST(Image, userCtor)
 {
@@ -19,4 +18,14 @@ TEST(Image, userCtor)
     EXPECT_EQ(i.height(),100);
     EXPECT_EQ(i.channels(),3);
     EXPECT_NE(i.pixels(),nullptr);
+}
+TEST(Image, setPixel)
+{
+    Image i(100,100);
+    i.setPixel(0,0,255,0,0); // set first pixel to red
+    unsigned char r,g,b;
+    i.getPixel(0,0,r,g,b);
+    EXPECT_TRUE(r==255);
+    EXPECT_TRUE(g==0);
+    EXPECT_TRUE(b==0);
 }
