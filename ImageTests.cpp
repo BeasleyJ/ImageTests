@@ -28,14 +28,45 @@ TEST(Image, setPixel)
     EXPECT_TRUE(r==255);
     EXPECT_TRUE(g==0);
     EXPECT_TRUE(b==0);
-}
-TEST(Image, setPixelvalue)
-{
-    Image i(100,100);
-    i.setPixel(10,10,255,128,12); // set first pixel to red
-    unsigned char r,g,b;
+
+    i.setPixel(10,10,255,128,12);
     i.getPixel(10,10,r,g,b);
     EXPECT_TRUE(r==255);
     EXPECT_TRUE(g==128);
     EXPECT_TRUE(b==12);
+}
+
+TEST(Image,writeFile)
+{
+    Image i(100,100);
+    i.setPixel(0,0,255,0,0);
+    i.setPixel(1,0,0,255,0);
+    i.setPixel(2,0,0,0,255);
+    EXPECT_TRUE(i.write("test.png"));
+}
+
+TEST(Image,clearColour)
+{
+    Image i(100,100);
+    i.clearColour(128,128,128);
+    i.setPixel(0,0,255,0,0);
+    i.setPixel(1,0,0,255,0);
+    i.setPixel(2,0,0,0,255);
+    EXPECT_TRUE(i.write("test.png"));
+}
+
+TEST(Image,copyCtor)
+{
+    Image i(100,100);
+    i.clearColour(128,128,128);
+    i.setPixel(0,0,255,0,0);
+    i.setPixel(1,0,0,255,0);
+    i.setPixel(2,0,0,0,255);
+
+    Image image2=i;
+    unsigned char r,g,b;
+    i.getPixel(0,0,r,g,b);
+    EXPECT_EQ(r,255);
+    EXPECT_EQ(g,0);
+    EXPECT_EQ(b,0);
 }
